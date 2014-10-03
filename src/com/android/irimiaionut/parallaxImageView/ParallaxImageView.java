@@ -16,11 +16,15 @@ public class ParallaxImageView extends ImageView implements SensorEventListener 
 	private SensorManager senSensorManager;
 	private Sensor senAccelerometer;
 	private int sideVerticalMargin, sideHorizontalMargin;
+	private float verticalMultiplier=1, horizontalMultiplier=1;
+	
     public ParallaxImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        
 		senSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
 	    senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR);
 	    senSensorManager.registerListener(this, senAccelerometer , SensorManager.SENSOR_DELAY_FASTEST);
+	    
     }
 
     public ParallaxImageView(Context context) {
@@ -28,19 +32,23 @@ public class ParallaxImageView extends ImageView implements SensorEventListener 
     }
     
     public void setMargins(int VM, int HM){
-    	this.sideVerticalMargin = VM;
-    	this.sideHorizontalMargin = HM;
+    	this.sideVerticalMargin = -VM;
+    	this.sideHorizontalMargin = -HM;
+	    RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)this.getLayoutParams();
+	    params.setMargins(-HM, -VM, -HM, -VM);
+	    this.setLayoutParams(params);
     }
 
+    public void setMultipliers(float Vertical, float Horizontal){
+    	this.verticalMultiplier = Vertical;
+    	this.horizontalMultiplier = Horizontal;
+    }
+    
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 	    Sensor mySensor = event.sensor;
 	    
 	    if (mySensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
-	    	
-	    	long actualTime = System.currentTimeMillis();
-
-        	RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)this.getLayoutParams();
             
          // Convert the rotation-vector to a 4x4 matrix.
         	try {
@@ -66,22 +74,18 @@ public class ParallaxImageView extends ImageView implements SensorEventListener 
             vals[1] = (float) Math.toDegrees(vals[1]);
             vals[2] = (float) Math.toDegrees(vals[2]);
             
-            int leftfloat = (int) (-160-(vals[1]*1.7));
-            int rightfloat = (int) (-160+(vals[1]*1.7));
+            int leftfloat = (int) (this.sideHorizontalMargin-(vals[1]*this.horizontalMultiplier));
             
             int topfloat;
-			int bottomfloat;
 			
 			if(vals[2]>0){
-	            topfloat=(int) (-240+(vals[2]*1.5));
-	            bottomfloat=(int) (-240-(vals[2]*1.5));
+	            topfloat=(int) (this.sideVerticalMargin+(vals[2]*this.verticalMultiplier));
             }else{
-	            topfloat=(int) (-240-(vals[2]*1.5));
-	            bottomfloat=(int) (-240+(vals[2]*1.5));
+	            topfloat=(int) (this.sideVerticalMargin-(vals[2]*this.verticalMultiplier));
             }
 			
-	        params.setMargins(leftfloat, topfloat, rightfloat, bottomfloat);
-	        this.setLayoutParams(params);
+			this.setX(leftfloat);
+			this.setY(topfloat);
 	    }
 		
 	}
