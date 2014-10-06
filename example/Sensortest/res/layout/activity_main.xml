@@ -1,0 +1,129 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_margin="0dip"
+    tools:context="com.example.sensortest.MainActivity" >
+    
+    <com.android.irimiaionut.parallaxImageView.ParallaxImageView
+        android:id="@+id/backgr"
+        android:src="@drawable/backgr"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"/>
+    
+	<TextView
+        android:id="@+id/welcome"
+        android:text="Welcome to"
+        android:textColor="#FFFFFF"
+        android:layout_width="180dip"
+        android:textSize="18dip"
+        android:textAlignment="textStart"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/logo_holder"/>
+    	    
+    <LinearLayout 
+	    android:layout_width="wrap_content"
+	    android:id="@+id/logo_holder"
+	    android:layout_height="wrap_content"
+	    android:layout_centerInParent="true"
+	    android:orientation="vertical"
+	    android:layout_margin="0dip">
+   
+	    
+	    <ImageView
+	        android:id="@+id/logo"
+	        android:src="@drawable/logo"
+	        android:layout_height="wrap_content"
+	        android:layout_width="180dip"
+	        android:scaleType="centerInside"
+	        android:layout_centerInParent="true"
+	        android:adjustViewBounds="true"/>
+	     
+	     <TextView
+	        android:id="@+id/subtitle"
+	        android:text="The app that takes you out "
+	        android:textColor="#FFFFFF"
+	        android:layout_width="180dip"
+	        android:gravity="center"
+	        android:layout_marginBottom="10dip"
+	        android:layout_height="wrap_content"
+	        android:layout_centerHorizontal="true"
+	        android:fontFamily="sans-serif-light"
+	        android:textSize="15dip"
+	        android:layout_below="@+id/logo" />
+	     
+
+			<LinearLayout 
+		        android:orientation="horizontal"
+		        android:layout_width="wrap_content"
+		        android:layout_gravity="center_horizontal"
+		        android:layout_height="wrap_content"
+		        android:layout_below="@+id/logo_holder">
+			     
+			     <TextView
+			        android:id="@+id/signUp"
+			        android:text="Sign Up"
+			        android:textColor="#F8AD39"
+			        android:layout_width="wrap_content"
+			        android:gravity="center"
+			        android:layout_marginRight="10dip"
+			        android:layout_height="50dip"
+			        android:layout_centerHorizontal="true"
+			        android:textSize="20dip" />
+			     
+			     <TextView
+			        android:id="@+id/signIn"
+			        android:text="Sign In"
+			        android:textColor="#FFFFFF"
+			        android:layout_marginLeft="10dip"
+			        android:layout_width="wrap_content"
+			        android:gravity="center"
+			        android:layout_height="50dip"
+			        android:layout_centerHorizontal="true"
+			        android:fontFamily="sans-serif-light"
+			        android:textSize="20dip" />
+		         
+		     </LinearLayout>
+
+     </LinearLayout>
+     
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        
+	     <TextView
+	        android:id="@+id/Facebook"
+	        android:text="Login with Facebook"
+	        android:layout_gravity="center"
+	        android:textColor="#FFFFFF"
+	        android:layout_width="match_parent"
+	        android:gravity="center"
+	        android:layout_height="wrap_content"
+	        android:padding="12dip"
+	        android:background="#8048629b"
+	        android:layout_centerHorizontal="true"
+	        android:fontFamily="sans-serif-light"
+	        android:textSize="17dip" />
+	     
+	     <TextView
+	        android:id="@+id/Twitter"
+	        android:text="Login with Twitter"
+	        android:layout_gravity="center"
+	        android:textColor="#FFFFFF"
+	        android:layout_width="match_parent"
+	        android:gravity="center"
+	        android:layout_height="wrap_content"
+	        android:padding="12dip"
+	        android:background="#8023b0e6"
+	        android:layout_centerHorizontal="true"
+	        android:fontFamily="sans-serif-light"
+	        android:textSize="17dip" />
+        
+    </LinearLayout>
+
+</RelativeLayout>
