@@ -1,5 +1,7 @@
 # Parallax ImageView Android library
 
+![alt tag](https://raw.githubusercontent.com/irimiaionut/ParallaxImageView/master/screen.png)
+
 **1. Project**
 
    You have here a library that lets you use a imageview to simulate a 3D effect like on Amazon FirePhone and Iphone. To do so, the imageview is set with a margin and based on the phone's movement and interpreted with the Sensor.TYPE_ROTATION_VECTOR moves the margin so that it creates a 3D in depht effect.
